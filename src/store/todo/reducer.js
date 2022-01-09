@@ -1,5 +1,5 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { deleteTodosError, deleteTodosSuccess, setTodosError, setTodosSuccess, updateTodosStatusError, updateTodosStatusSuccess } from './actions';
+import { addTodosError, addTodosSuccess, deleteTodosError, deleteTodosSuccess, setTodosError, setTodosSuccess, updateTodosStatusError, updateTodosStatusSuccess } from './actions';
 
 
 const errorHelper = (state, action) => {
@@ -24,8 +24,12 @@ export const todoReducer = createReducer(initialState, {
     [deleteTodosSuccess]: (state, action) => {
         state.todos = state.todos.filter(todo => todo.id !== action.payload);
     },
+    [addTodosSuccess]: (state, action) => {
+        state.todos.push(action.payload);
+    },
     [setTodosError]: errorHelper,
     [deleteTodosError]: errorHelper,
-    [updateTodosStatusError]: errorHelper
+    [updateTodosStatusError]: errorHelper,
+    [addTodosError]: errorHelper
 });
 

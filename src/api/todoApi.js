@@ -12,13 +12,19 @@ const updateTodosStatus = (params) => {
 
     return requestInstance
     .patch(`${id}`, {completed})
-    .then(response => response.status);
+    .then(isUpdates => isUpdates.status);
 }
 
 const deleteTodo = (id) => {
     return requestInstance
     .delete(`${id}`)
-    .then(response => response.status);
+    .then(isDelete => isDelete.status);
 }
 
-export const todoApi = { getTodos, updateTodosStatus, deleteTodo };
+const addTodo = (title) => {
+    return requestInstance
+    .post('', {title, userId: 1})
+    .then(newTodo => newTodo.data);
+}
+
+export const todoApi = { getTodos, updateTodosStatus, deleteTodo, addTodo };

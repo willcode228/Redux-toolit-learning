@@ -1,5 +1,5 @@
 import { todoApi } from '../../api/todoApi';
-import { deleteTodosError, deleteTodosSuccess, setTodosError, setTodosSuccess, updateTodosStatusError, updateTodosStatusSuccess } from './actions';
+import { addTodosSuccess, deleteTodosError, deleteTodosSuccess, setTodosError, setTodosSuccess, updateTodosStatusError, updateTodosStatusSuccess } from './actions';
 
 export const setTodos = () => (dispatch) => {
     todoApi.getTodos()
@@ -31,5 +31,16 @@ export const deleteTodo = (id) => (dispatch) => {
         })
         .catch(error => {
             dispatch(deleteTodosError(error.message));
+        });
+}
+
+export const addTodo = (title) => (dispatch) => {
+    todoApi.addTodo(title)
+        .then(newTodo => {
+            console.log(newTodo);
+            dispatch(addTodosSuccess(newTodo));
+        })
+        .catch(error => {
+            dispatch(addTodosSuccess(error.message));
         });
 }
