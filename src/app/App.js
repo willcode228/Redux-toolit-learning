@@ -1,6 +1,14 @@
+import TodosForm from '../components/TodosForm/TodosForm.jsx';
+import TodosList from '../components/TodosList/TodosList.jsx';
+
 
 const App = () => {
-    return (<h2>Hello world</h2>);
+    return (
+        <div className='todos'>
+            <TodosForm />
+            <TodosList />
+        </div>
+    );
 }
 
 export default App;
